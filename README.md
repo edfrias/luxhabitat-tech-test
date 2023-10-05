@@ -28,6 +28,6 @@ exercise you will need to:
 
 # How to:
 
-- Fisrt download the project from https://github.com/
+- Fisrt download the project from https://github.com/edfrias/luxhabitat-tech-test
 - Second open a terminal and run `npm install` to get all dependencies
 - Third open a terminal and run `npm run dev` to see the test, just go to the localhost with the correct port

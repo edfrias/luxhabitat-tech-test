@@ -1,0 +1,90 @@
+[
+  {
+    "id": 1,
+    "location": "DIFC",
+    "price": 12000000,
+    "currency": "AED",
+    "agent_id": 1,
+    "bedrooms": 3,
+    "property_type": "apartment",
+    "availability": "ready",
+    "size_sqft": 2500
+  },
+  {
+    "id": 2,
+    "location": "Downtown Dubai",
+    "price": 18000000,
+    "currency": "AED",
+    "agent_id": 2,
+    "bedrooms": 4,
+    "property_type": "villa",
+    "availability": "off-plan",
+    "size_sqft": 3500
+  },
+  {
+    "id": 3,
+    "location": "Dubai Marina",
+    "price": 22000000,
+    "currency": "AED",
+    "agent_id": 3,
+    "bedrooms": 2,
+    "property_type": "apartment",
+    "availability": "ready",
+    "size_sqft": 2000
+  },
+  {
+    "id": 4,
+    "location": "Deira",
+    "price": 9000000,
+    "currency": "AED",
+    "agent_id": 1,
+    "bedrooms": 1,
+    "property_type": "apartment",
+    "availability": "off-plan",
+    "size_sqft": 1200
+  },
+  {
+    "id": 5,
+    "location": "Palm Jumeirah",
+    "price": 15000000,
+    "currency": "AED",
+    "agent_id": 2,
+    "bedrooms": 5,
+    "property_type": "villa",
+    "availability": "ready",
+    "size_sqft": 4000
+  },
+  {
+    "id": 6,
+    "location": "Bur Dubai",
+    "price": 11000000,
+    "currency": "AED",
+    "agent_id": 3,
+    "bedrooms": 3,
+    "property_type": "apartment",
+    "availability": "off-plan",
+    "size_sqft": 2800
+  },
+  {
+    "id": 7,
+    "location": "DIFC",
+    "price": 20000000,
+    "currency": "AED",
+    "agent_id": 1,
+    "bedrooms": 4,
+    "property_type": "villa",
+    "availability": "ready",
+    "size_sqft": 3500
+  },
+  {
+    "id": 8,
+    "location": "Dubai Marina",
+    "price": 17000000,
+    "currency": "AED",
+    "agent_id": 2,
+    "bedrooms": 2,
+    "property_type": "apartment",
+    "availability": "off-plan",
+    "size_sqft": 2100
+  }
+]

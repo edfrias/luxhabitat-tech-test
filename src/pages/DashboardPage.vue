@@ -3,6 +3,8 @@ import { ElDivider, ElHeader, ElContainer, ElMain } from 'element-plus';
 import AsideComponent from '../components/AsideComponent.vue';
 import HeaderComponent from '../components/HeaderComponent.vue';
 import DeckComponent from '../components/DeckComponent.vue';
+import LineChartContainerComponent from '../components/LineChartContainerComponent.vue';
+import DoughnutChartContainerComponent from '../components/DoughnutChartContainerComponent.vue';
 </script>
 
 <template>
@@ -16,6 +18,10 @@ import DeckComponent from '../components/DeckComponent.vue';
         <ElDivider class="divider" />
         <ElMain class="main-container">
           <DeckComponent />
+          <ElDivider class="divider" />
+          <LineChartContainerComponent />
+          <ElDivider class="divider" />
+          <DoughnutChartContainerComponent />
         </ElMain>
       </ElContainer>
     </ElContainer>
@@ -29,6 +35,7 @@ import DeckComponent from '../components/DeckComponent.vue';
 
 .dashboard-page .content-container {
   padding-inline-end: 64px;
+  margin-block-end: 250px;
 }
 
 .dashboard-page .divider {

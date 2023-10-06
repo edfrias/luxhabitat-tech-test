@@ -74,3 +74,8 @@ export interface TableDataItem {
   picture: Picture;
   nat: string;
 }
+
+export enum HouseAvailability {
+  READY = 'ready',
+  NOT_READY = 'not ready',
+}

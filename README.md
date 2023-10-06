@@ -6,7 +6,7 @@
 - TypeScript
 - Vue
 - Element Plus (https://element-plus.org/es-ES/)
-- vue-charts.js (https://vue-chartjs.org/) (https://www.chartjs.org/)
+- vue-charts.js (https://www.chartjs.org/) (https://vue-chartjs.org/) (https://chartjs-plugin-datalabels.netlify.app/samples/charts/line.html) (Tutorial: https://medium.com/@jogarcia/beautiful-line-chart-in-vue3-with-chart-js-901bac65d66e)
 - PxToEM Calculator (http://pxtoem.com/)
 - Font: Public Sans (https://fonts.google.com/specimen/Public+Sans)
 - RandomUser (https://randomuser.me/api/?results=1)

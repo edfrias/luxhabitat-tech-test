@@ -18,13 +18,13 @@
 
 .header-component > .title {
   font-size: 1.833rem;
-  font-weight: 500;
+  font-variation-settings: 'wght' 500;
   margin: 0;
 }
 
 .header-component > .greet {
   font-size: 1.333rem;
-  font-weight: 300;
+  font-variation-settings: 'wght' 300;
   margin-block-start: 8px;
   margin-block-end: 16px;
 }

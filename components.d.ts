@@ -38,6 +38,7 @@ declare module 'vue' {
     ShareScreenIconButton: typeof import('./src/components/buttons/ShareScreenIconButton.vue')['default']
     Table: typeof import('./src/components/Table.vue')['default']
     TableComponent: typeof import('./src/components/TableComponent.vue')['default']
+    TableContainerComponent: typeof import('./src/components/TableContainerComponent.vue')['default']
     UserBadgeComponent: typeof import('./src/components/UserBadgeComponent.vue')['default']
     UserIconButton: typeof import('./src/components/buttons/UserIconButton.vue')['default']
   }

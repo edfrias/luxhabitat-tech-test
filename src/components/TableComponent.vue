@@ -1,37 +1,34 @@
 <script setup lang="ts">
 import { ElTable } from 'element-plus';
+import { TableDataItem } from './Types/types';
+import data from '../mocks/leads.json';
 
-type TableData = {
-  photo: string;
-  name: string;
-  surname: string;
-  country: string;
-};
+// type IsLoading = boolean;
 
-type IsLoading = boolean;
+// const tableProps = defineProps<{
+//   tableData: TableDataItem[];
+//   isLoading?: IsLoading;
+// }>();
 
-const tableProps = defineProps<{
-  tableData: TableData[];
-  isLoading?: IsLoading;
-  hasStripe?: boolean;
-}>();
+const tableData = data as TableDataItem[];
 </script>
 
 <template>
-  <el-table
-    :data="tableProps.tableData"
-    :stripe="tableProps.hasStripe"
-    style="width: 100%"
-    v-loading="tableProps.isLoading"
-  >
-    <el-table-column label="Photo" width="100%">
-      <template #default="props">
-        <img :src="props.row.photo" />
+  <el-table :data="tableData" style="width: 100%">
+    <el-table-column prop="id" label="Id" width="100%" />
+    <el-table-column prop="type" label="Type" width="100%" />
+    <el-table-column prop="timestamp" label="Creation date" width="100%" />
+    <el-table-column prop="lead_source" label="Lead Source" width="100%" />
+    <el-table-column prop="name" label="Name" width="100%" />
+    <el-table-column prop="email" label="Email" width="100%" />
+    <el-table-column prop="phone" label="Phone" width="100%" />
+    <el-table-column prop="property_id" label="Property ID" width="100%" />
+    <el-table-column prop="agent_id" label="Agent" width="100%" />
+    <el-table-column label="Operations">
+      <template #default>
+        <el-button size="small">Update</el-button>
       </template>
     </el-table-column>
-    <el-table-column prop="name" label="Name" width="100%" />
-    <el-table-column prop="surname" label="Surname" width="100%" />
-    <el-table-column prop="country" label="Country" width="100%" />
   </el-table>
 </template>
 

@@ -8,7 +8,6 @@ import {
   LinearScale,
   PointElement,
   LineElement,
-  Title,
 } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { Line } from 'vue-chartjs';
@@ -18,7 +17,6 @@ ChartJS.register(
   LinearScale,
   PointElement,
   LineElement,
-  Title,
   ChartDataLabels
 );
 
@@ -56,7 +54,6 @@ const charOptions = {
       }) {
         return context.dataset.backgroundColor;
       },
-      // borderRadius: 0,
       color: 'black',
       font: {
         weight: 'bold',
@@ -102,7 +99,10 @@ const charOptions = {
 };
 onMounted(() => {
   // Cheat to resize the canvas from chart
-  document.getElementsByTagName('canvas')[0].style.height = '358px';
+  const donutCanvas = document.getElementById('line');
+  if (donutCanvas) {
+    donutCanvas.style.height = '358px';
+  }
 });
 </script>
 
@@ -113,7 +113,7 @@ onMounted(() => {
       <p class="subtitle">Leads per day</p>
     </div>
     <ElCard class="chart-container">
-      <Line :data="charData" :options="charOptions" />
+      <Line id="line" :data="charData" :options="charOptions" />
     </ElCard>
   </section>
 </template>

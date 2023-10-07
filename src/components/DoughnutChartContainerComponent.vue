@@ -2,12 +2,10 @@
 import { onMounted } from 'vue';
 import { ElCard } from 'element-plus';
 import leadByType from '../mocks/lead-by-type.json';
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { Chart as ChartJS2, ArcElement, Tooltip } from 'chart.js';
 import { Doughnut } from 'vue-chartjs';
 
-const char = new ChartJS();
-
-ChartJS.register(ArcElement, Tooltip, Legend);
+ChartJS2.register(ArcElement, Tooltip);
 
 const dataLabels = Object.keys(leadByType);
 const dataValues = Object.values(leadByType);
@@ -17,16 +15,14 @@ const charData = {
   datasets: [
     {
       data: dataValues,
-      backgroundColor: ['#F9EDCF', '#D9CEED', '#CEE3DE'],
+      backgroundColor: ['#f9edcf', '#d9ceed', '#cee3de'],
       interaction: {
         intersect: false,
       },
-      borderColor: '#cee3de',
+      borderColor: 'transparent',
     },
   ],
 };
-
-//TODO: See wats happening here: https://github.com/chartjs/chartjs-plugin-datalabels/blob/master/docs/samples/charts/doughnut.md
 
 const charOptions = {
   responsive: true,
@@ -37,13 +33,17 @@ const charOptions = {
     },
     title: {
       display: false,
-      text: 'blbiblu',
     },
   },
-};
+} as const;
+
 onMounted(() => {
   // Cheat to resize the canvas from chart
-  document.getElementsByTagName('canvas')[0].style.height = '358px';
+  const donutCanvas = document.getElementById('donut');
+  if (donutCanvas) {
+    donutCanvas.style.height = '340px';
+    donutCanvas.style.width = '850px';
+  }
 });
 </script>
 
@@ -54,15 +54,37 @@ onMounted(() => {
       <p class="subtitle">Leads per day</p>
     </div>
     <ElCard class="chart-container">
-      <Doughnut :data="charData" :options="charOptions" />
+      <div class="legend">
+        <p class="item" v-for="lead in dataLabels" :key="lead">
+          <span
+            class="legend-color"
+            :style="{
+              'background-color': `var(--${lead.toLowerCase()}-donut-bg-color)`,
+            }"
+          />
+          {{ lead }}
+        </p>
+      </div>
+      <Doughnut id="donut" :data="charData" :options="charOptions" />
     </ElCard>
   </section>
 </template>
 
 <style>
+:root {
+  --buyer-donut-bg-color: #f9edcf;
+  --seller-donut-bg-color: #d9ceed;
+  --tenant-donut-bg-color: #cee3de;
+}
+
 .chart-container-component {
   display: flex;
   margin-block: 64px;
+}
+
+.chart-container-component .el-card__body {
+  display: flex;
+  padding: 0;
 }
 
 .chart-container-component .text {
@@ -77,8 +99,28 @@ onMounted(() => {
   overflow: hidden;
 }
 
-.el-card__body {
-  padding: 0;
+.chart-container-component .chart-container .legend {
+  display: flex;
+  flex-direction: column;
+  margin-inline-start: 32px;
+  margin-block-start: 32px;
+}
+
+.chart-container-component .chart-container .legend .item {
+  align-items: center;
+  display: flex;
+  font-size: 1.333em;
+  font-variation-settings: 'wght' 400;
+  margin-block-start: 0;
+  margin-block-end: 16px;
+}
+
+.chart-container-component .chart-container .legend .legend-color {
+  border-radius: 8px;
+  display: inline-flex;
+  margin-inline-end: 16px;
+  height: 36px;
+  width: 36px;
 }
 
 .chart-container-component .title {

@@ -20,10 +20,10 @@ exercise you will need to:
   - [ ] Upon completion of the form, a new row on top of the table will be created with
         the data introduced by the user.
   - [ ] All fields must include appropriate HTML native validation.
-- [ ] Upon clicking the “Load more” button, a new group of leads will be loaded and added
+- [x] Upon clicking the “Load more” button, a new group of leads will be loaded and added
       below the ones already on the screen.
-- [ ] The line chart will use data from the file lead-evolution.json
-- [ ] The pie chart will use data from the file lead-by-type.json
+- [x] The line chart will use data from the file lead-evolution.json
+- [x] The pie chart will use data from the file lead-by-type.json
 
 # How to:
 

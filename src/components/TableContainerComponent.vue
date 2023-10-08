@@ -1,5 +1,38 @@
 <script setup lang="ts">
+import { ref } from 'vue';
+import { ElButton } from 'element-plus';
+import { TableDataItem } from './Types/types';
+import { Lead } from '../utils/types';
+import generateRandomLead from '../utils/generateRandomLead';
+import data from '../mocks/leads.json';
 import TableComponent from './TableComponent.vue';
+
+const TIMEOUT_DELAY = 1000;
+
+const leads = ref<Array<TableDataItem>>(data);
+
+const loadingLeads = ref<boolean>(false);
+
+const generateRandomLeads = (): Lead[] => {
+  const fakeLeads = [];
+  for (let i = 1; i < 12; i++) {
+    fakeLeads.push(generateRandomLead());
+  }
+
+  return fakeLeads;
+};
+
+const handleLoadLeads = (): void => {
+  console.log('loading new random leads...');
+  const newLeads = generateRandomLeads() as Array<TableDataItem>;
+  loadingLeads.value = true;
+
+  leads.value = [...leads.value, ...newLeads];
+
+  setTimeout(() => {
+    loadingLeads.value = false;
+  }, TIMEOUT_DELAY);
+};
 </script>
 
 <template>
@@ -8,7 +41,10 @@ import TableComponent from './TableComponent.vue';
       <h2 class="title">Lead activity</h2>
     </div>
     <div class="table-container">
-      <TableComponent />
+      <TableComponent :data="leads" :is-loading="loadingLeads" />
+      <ElButton class="load-leads" @click="handleLoadLeads" round>
+        Load more
+      </ElButton>
     </div>
   </section>
 </template>
@@ -32,5 +68,16 @@ import TableComponent from './TableComponent.vue';
 
 .table-container-component .table-container {
   flex-grow: 11;
+}
+
+.table-container-component .table-container .load-leads {
+  background-color: var(--color-grey-6);
+  border-color: var(--color-grey-6);
+  color: white;
+  font-size: 1.167em;
+  font-variation-settings: 'wght' 400;
+  margin-block-start: 48px;
+  height: 38px;
+  width: 136px;
 }
 </style>

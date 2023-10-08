@@ -8,6 +8,7 @@
     "email": "alex.johnson@example.com",
     "phone": "+971501234567",
     "property_id": 1,
+    "property_location": "DIFC Central Park",
     "agent_id": 1
   },
   {
@@ -19,6 +20,7 @@
     "email": "sarah.williams@example.com",
     "phone": "+971509876543",
     "property_id": 2,
+    "property_location": "DIFC Central Park",
     "agent_id": 2
   },
   {
@@ -30,6 +32,7 @@
     "email": "michael.davis@example.com",
     "phone": "+971502345678",
     "property_id": 3,
+    "property_location": "DIFC Central Park",
     "agent_id": 3
   },
   {
@@ -41,6 +44,7 @@
     "email": "emma.brown@example.com",
     "phone": "+971503210987",
     "property_id": 4,
+    "property_location": "DIFC Central Park",
     "agent_id": 1
   },
   {
@@ -52,6 +56,7 @@
     "email": "daniel.clark@example.com",
     "phone": "+971504567890",
     "property_id": 5,
+    "property_location": "DIFC Central Park",
     "agent_id": 2
   },
   {
@@ -63,6 +68,7 @@
     "email": "olivia.smith@example.com",
     "phone": "+971506789012",
     "property_id": 6,
+    "property_location": "DIFC Central Park",
     "agent_id": 3
   },
   {
@@ -74,6 +80,7 @@
     "email": "william.johnson@example.com",
     "phone": "+971505432109",
     "property_id": 7,
+    "property_location": "DIFC Central Park",
     "agent_id": 1
   },
   {
@@ -85,6 +92,7 @@
     "email": "sophia.taylor@example.com",
     "phone": "+971507654321",
     "property_id": 8,
+    "property_location": "DIFC Central Park",
     "agent_id": 2
   },
   {
@@ -96,6 +104,7 @@
     "email": "david.anderson@example.com",
     "phone": "+971508765432",
     "property_id": 1,
+    "property_location": "DIFC Central Park",
     "agent_id": 1
   },
   {
@@ -107,6 +116,7 @@
     "email": "nora.davis@example.com",
     "phone": "+971504567890",
     "property_id": 2,
+    "property_location": "DIFC Central Park",
     "agent_id": 2
   },
   {
@@ -118,6 +128,7 @@
     "email": "jason.miller@example.com",
     "phone": "+971509876543",
     "property_id": 3,
+    "property_location": "DIFC Central Park",
     "agent_id": 3
   },
   {
@@ -129,6 +140,7 @@
     "email": "grace.robinson@example.com",
     "phone": "+971502345678",
     "property_id": 4,
+    "property_location": "DIFC Central Park",
     "agent_id": 1
   }
 ]

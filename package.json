@@ -16,6 +16,7 @@
     "vue-chartjs": "^5.2.0"
   },
   "devDependencies": {
+    "@faker-js/faker": "^8.1.0",
     "@typescript-eslint/eslint-plugin": "^6.1.0",
     "@typescript-eslint/parser": "^6.1.0",
     "@vitejs/plugin-vue": "^4.2.3",

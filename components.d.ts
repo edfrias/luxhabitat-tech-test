@@ -7,6 +7,7 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    AddLeadModalComponent: typeof import('./src/components/AddLeadModalComponent.vue')['default']
     AsideComponent: typeof import('./src/components/AsideComponent.vue')['default']
     BarChartIconButton: typeof import('./src/components/buttons/BarChartIconButton.vue')['default']
     BaseButton: typeof import('./src/components/buttons/BaseButton.vue')['default']
@@ -24,6 +25,7 @@ declare module 'vue' {
     ElFooter: typeof import('element-plus/es')['ElFooter']
     ElHeader: typeof import('element-plus/es')['ElHeader']
     ElMain: typeof import('element-plus/es')['ElMain']
+    ElTable: typeof import('element-plus/es')['ElTable']
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
     Header: typeof import('./src/components/Header.vue')['default']
     HeaderComponent: typeof import('./src/components/HeaderComponent.vue')['default']

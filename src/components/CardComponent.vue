@@ -20,13 +20,14 @@ const isFollowActive = computed(() =>
 
 const isLoading = ref<boolean>(true);
 
-const imageHasLoaded = () => {
+const imageHasLoaded = (): void => {
   isLoading.value = false;
 };
 </script>
 
 <template>
   <ElCard class="card-component">
+    <!-- TODO: Implement here ElCarousel/ElCarouselItem -->
     <ElImage
       v-loading="isLoading"
       :src="houseImages[0]"

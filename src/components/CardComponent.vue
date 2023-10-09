@@ -1,7 +1,13 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 import { HouseAvailability } from './Types/types';
-import { ElCard, ElImage, ElButton } from 'element-plus';
+import {
+  ElCard,
+  ElImage,
+  ElButton,
+  ElCarousel,
+  ElCarouselItem,
+} from 'element-plus';
 
 interface CardProps {
   houseImages: string[];
@@ -27,14 +33,17 @@ const imageHasLoaded = (): void => {
 
 <template>
   <ElCard class="card-component">
-    <!-- TODO: Implement here ElCarousel/ElCarouselItem -->
-    <ElImage
-      v-loading="isLoading"
-      :src="houseImages[0]"
-      alt="Random image of a house"
-      class="image-component"
-      @load="imageHasLoaded"
-    />
+    <ElCarousel trigger="click" height="245px">
+      <ElCarouselItem v-for="image in houseImages" :key="image">
+        <ElImage
+          v-loading="isLoading"
+          :src="image"
+          alt="Random image of a house"
+          class="image-component"
+          @load="imageHasLoaded"
+        />
+      </ElCarouselItem>
+    </ElCarousel>
     <section class="house-info">
       <div class="content">
         <p class="house-name">
@@ -51,8 +60,9 @@ const imageHasLoaded = (): void => {
         size="large"
         :disabled="isFollowActive"
         round
-        >Follow</ElButton
       >
+        Follow
+      </ElButton>
       <div class="footer">
         <p class="house-specs">{{ houseSpecs }}</p>
       </div>
@@ -63,6 +73,8 @@ const imageHasLoaded = (): void => {
 <style>
 :root {
   --card-border-radius: 8px;
+  --el-carousel-bullet-width: 8px;
+  --el-carousel-bullet-height: 8px;
   --color-grey-3: #ddd;
 }
 
@@ -87,6 +99,12 @@ const imageHasLoaded = (): void => {
 .card-component .image-component {
   height: 245px;
   width: 325px;
+}
+
+.card-component .el-carousel__button {
+  border-radius: 50%;
+  height: var(--el-carousel-bullet-height);
+  width: var(--el-carousel-bullet-width);
 }
 
 .house-info {

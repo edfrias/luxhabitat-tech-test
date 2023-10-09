@@ -9,7 +9,7 @@
 - vue-charts.js (https://www.chartjs.org/) (https://vue-chartjs.org/) (https://chartjs-plugin-datalabels.netlify.app/samples/charts/line.html) (https://github.com/chartjs/chartjs-plugin-datalabels/blob/master/docs/samples/charts/doughnut.md) (https://medium.com/@jogarcia/beautiful-line-chart-in-vue3-with-chart-js-901bac65d66e)
 - PxToEM Calculator (http://pxtoem.com/)
 - Font: Public Sans (https://fonts.google.com/specimen/Public+Sans)
-- Unsplash photos (https://source.unsplash.com) (https://awik.io/generate-random-images-unsplash-without-using-api/)
+- Unsplash photos (https://source.unsplash.com) (https://awik.io/generate-random-images-unsplash-without-using-api/) (https://source.unsplash.com/random/325x245/?house)
 
 Create the template in html+css and implement the required functionalities. To complete the
 exercise you will need to:

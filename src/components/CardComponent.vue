@@ -33,7 +33,7 @@ const imageHasLoaded = (): void => {
 
 <template>
   <ElCard class="card-component">
-    <ElCarousel trigger="click" height="245px">
+    <ElCarousel trigger="click" height="245px" :autoplay="false">
       <ElCarouselItem v-for="image in houseImages" :key="image">
         <ElImage
           v-loading="isLoading"

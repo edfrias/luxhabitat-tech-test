@@ -1,8 +1,8 @@
 import { reactive } from 'vue';
-import { Lead } from '../Types/types';
+import { TableDataItem } from '../Types/types';
 import type { FormRules } from 'element-plus';
 
-export const formRules = reactive<FormRules<Lead>>({
+export const formRules = reactive<FormRules<TableDataItem>>({
   type: [
     {
       required: true,
@@ -42,10 +42,6 @@ export const formRules = reactive<FormRules<Lead>>({
       required: true,
       message: 'Please enter a valid phone',
       trigger: 'blur',
-    },
-    {
-      type: 'number',
-      message: 'Phone must be a number',
     },
   ],
   agent_id: [

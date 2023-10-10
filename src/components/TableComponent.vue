@@ -9,7 +9,7 @@ const modalStore = useModal();
 
 type IsLoading = boolean;
 
-type TableData = Array<TableDataItem>;
+type TableData = Array<Partial<TableDataItem>>;
 
 const props = defineProps<{
   data: TableData;
@@ -154,6 +154,10 @@ watch(
   display: flex;
   max-width: 60px;
   word-break: break-word;
+}
+
+#table.el-table .el-table__cell .el-button:not(.add-lead) {
+  --el-button-bg-color: transparent;
 }
 
 #table.el-table th.el-table__cell .el-button.add-lead {

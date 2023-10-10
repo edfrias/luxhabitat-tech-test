@@ -11,7 +11,7 @@ const TIMEOUT_DELAY = 1000;
 
 const modalStore = useModal();
 
-const leads = ref<Array<TableDataItem>>([]);
+const leads = ref<Array<Partial<TableDataItem>>>([]);
 
 const loadingLeads = ref<boolean>(false);
 

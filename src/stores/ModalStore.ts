@@ -1,12 +1,10 @@
 import { defineStore } from 'pinia';
 import { TableDataItem } from '../components/Types/types';
 
-type Lead = TableDataItem | undefined;
-
 type State = {
   modalOpen: boolean;
-  lead: Lead;
-  leads: TableDataItem[];
+  lead: Partial<TableDataItem> | undefined;
+  leads: Partial<TableDataItem>[];
 };
 
 export const useModal = defineStore('modal', {
@@ -19,7 +17,7 @@ export const useModal = defineStore('modal', {
     setModalOpen(modalOpen: boolean): void {
       this.modalOpen = modalOpen;
     },
-    setLeadData(lead: Lead): void {
+    setLeadData(lead: Partial<TableDataItem>): void {
       if (lead) {
         this.lead = lead;
         this.leads.unshift(lead);
@@ -33,10 +31,10 @@ export const useModal = defineStore('modal', {
     getModalOpen(state): boolean {
       return state.modalOpen;
     },
-    getLeadData(state): Lead {
+    getLeadData(state): Partial<TableDataItem> | undefined {
       return state.lead;
     },
-    getLeadsData(state): TableDataItem[] {
+    getLeadsData(state): Partial<TableDataItem>[] {
       return state.leads;
     },
   },

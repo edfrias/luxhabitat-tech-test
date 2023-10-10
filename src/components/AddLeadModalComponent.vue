@@ -22,42 +22,54 @@ type Props = {
 
 const modalStore = useModal();
 const leadsList = [{ type: 'Buyer' }, { type: 'Seller' }, { type: 'Tenant' }];
-const defaultLead: Partial<TableDataItem> = {
-  id: 0,
-  type: '',
-  lead_source: '',
-  name: '',
-  email: 'hola@example.com',
-  phone: '',
-  agent_id: undefined,
-  property_id: undefined,
-};
+const defaultLead: Partial<TableDataItem> = {};
+
+// id: 0,
+// type: '22222',
+// lead_source: '22222',
+// name: '22222',
+// email: 'hola@example.com',
+// phone: '2222222222',
+// agent_id: 2222222222,
+// property_id: 2222222222,
 
 const props = defineProps<Props>();
+
+// TODO: emits still are trash
+const emit = defineEmits<{
+  send: [lead: Partial<TableDataItem>];
+}>();
+
 const showModal = ref<boolean>(false);
-const formRef = ref();
+
+const formRef = ref<FormInstance>();
 const leadForm = reactive<Partial<TableDataItem>>(defaultLead);
 
 const handleClose = (): void => {
   modalStore.setModalOpen(false);
 };
 
-const resetFormFields = (form: FormInstance | undefined): void => {
-  if (!form) return;
+const resetFormFields = (formEl: FormInstance | undefined): void => {
+  if (!formEl) return;
 
-  form.resetFields();
+  formEl.resetFields();
 };
 
-const handleBookLead = async (
-  form: FormInstance | undefined
-): Promise<void> => {
-  if (!form) return;
+const submitForm = (formEl: FormInstance | undefined) => {
+  if (!formEl) return;
 
-  await form.validate((valid) => {
+  formEl.validate((valid) => {
     if (valid) {
-      // const newLead = toRaw(form.$props.model);
-      console.log(toRaw(leadForm));
-      modalStore.setLeadData(toRaw(leadForm));
+      const formInfo = toRaw(formEl.$props.model);
+      if (formInfo) {
+        console.log('submit!', formInfo);
+        // TODO: emits still are trash
+        emit('send', formInfo);
+        // modalStore.setLeadData(formInfo);
+      }
+    } else {
+      console.log('error while submit!');
+      return false;
     }
   });
 };
@@ -76,6 +88,7 @@ watch(
     @closed="resetFormFields(formRef)"
     modal-class="lead-modal"
     align-center
+    destroy-on-close
     v-model="showModal"
     width="1162"
   >
@@ -174,7 +187,7 @@ watch(
             class="booker"
             size="large"
             plain
-            @click.prevent="handleBookLead(formRef)"
+            @click.prevent="submitForm(formRef)"
           >
             Book a valuation
           </ElButton>

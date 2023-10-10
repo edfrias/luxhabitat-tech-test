@@ -14,12 +14,12 @@
 Create the template in html+css and implement the required functionalities. To complete the
 exercise you will need to:
 
-- [ ] Implement all elements seen in the design.
-- [ ] Implement a form to add a new lead:
-  - [ ] This form will be on a modal
+- [x] Implement all elements seen in the design.
+- [x] Implement a form to add a new lead:
+  - [x] This form will be on a modal
   - [ ] Upon completion of the form, a new row on top of the table will be created with
         the data introduced by the user.
-  - [ ] All fields must include appropriate HTML native validation.
+  - [x] All fields must include appropriate HTML native validation.
 - [x] Upon clicking the “Load more” button, a new group of leads will be loaded and added
       below the ones already on the screen.
 - [x] The line chart will use data from the file lead-evolution.json

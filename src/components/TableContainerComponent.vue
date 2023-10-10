@@ -24,17 +24,18 @@ const generateRandomLeads = (): Partial<TableDataItem>[] => {
   return fakeLeads;
 };
 
-// const handleLoadBookedLead = (leadData: Record<string, string | number>) => {
-//   loadingLeads.value = true;
-//   bookedLead.value = leadData;
-//   try {
-//     leads.value.unshift(bookedLead.value);
-//   } catch (error) {
-//     throw new Error('Something went wrong while trying to push new lead');
-//   } finally {
-//     loadingLeads.value = false;
-//   }
-// };
+// TODO: emits still are trash
+const handleLoadBookedLead = (leadData: Partial<TableDataItem>) => {
+  console.log('lead in table contaienr', leadData);
+  loadingLeads.value = true;
+  try {
+    leads.value.unshift(leadData);
+  } catch (error) {
+    throw new Error('Something went wrong while trying to push new lead');
+  } finally {
+    loadingLeads.value = false;
+  }
+};
 
 const handleLoadLeads = (): void => {
   console.log('loading new random leads...');
@@ -72,7 +73,11 @@ onMounted(() => {
       <h2 class="title">Lead activity</h2>
     </div>
     <div class="table-container">
-      <TableComponent :data="leads" :is-loading="loadingLeads" />
+      <TableComponent
+        :data="leads"
+        :is-loading="loadingLeads"
+        @send="handleLoadBookedLead"
+      />
       <ElButton class="load-leads" @click="handleLoadLeads" round>
         Load more
       </ElButton>

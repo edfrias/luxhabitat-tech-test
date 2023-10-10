@@ -16,6 +16,11 @@ const props = defineProps<{
   isLoading: IsLoading;
 }>();
 
+// TODO: emits still are trash
+const emit = defineEmits<{
+  send: [lead: Partial<TableDataItem>];
+}>();
+
 const isNewLeadModalVisible = ref<boolean>(false);
 
 const handleAddLead = (): void => {
@@ -24,6 +29,11 @@ const handleAddLead = (): void => {
 };
 
 const isLoading = computed<IsLoading>(() => props.isLoading);
+
+// TODO: emits still are trash
+const handleSubmit = (lead: Partial<TableDataItem>): void => {
+  emit('send', lead);
+};
 
 watch(
   () => modalStore.getModalOpen,
@@ -98,7 +108,10 @@ watch(
       </template>
     </ElTableColumn>
   </ElTable>
-  <AddLeadModalComponent :visible="isNewLeadModalVisible" />
+  <AddLeadModalComponent
+    :visible="isNewLeadModalVisible"
+    @send="handleSubmit"
+  />
 </template>
 
 <style>

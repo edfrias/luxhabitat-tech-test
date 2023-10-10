@@ -35,7 +35,6 @@ const defaultLead: Partial<TableDataItem> = {
 
 const props = defineProps<Props>();
 const showModal = ref<boolean>(false);
-const disableButton = ref<boolean>(false);
 const formRef = ref();
 const leadForm = reactive<Partial<TableDataItem>>(defaultLead);
 
@@ -47,7 +46,6 @@ const resetFormFields = (form: FormInstance | undefined): void => {
   if (!form) return;
 
   form.resetFields();
-  disableButton.value = false;
 };
 
 const handleBookLead = async (
@@ -177,7 +175,6 @@ watch(
             size="large"
             plain
             @click.prevent="handleBookLead(formRef)"
-            :disabled="disableButton"
           >
             Book a valuation
           </ElButton>

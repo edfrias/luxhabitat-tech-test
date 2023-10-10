@@ -48,9 +48,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <section class="chart-container-component">
+  <section class="donut-chart-container-component">
     <div class="text">
-      <h2 class="title">Insights</h2>
+      <h2 class="title">Lead events</h2>
       <p class="subtitle">Leads per day</p>
     </div>
     <ElCard class="chart-container">
@@ -77,36 +77,38 @@ onMounted(() => {
   --tenant-donut-bg-color: #cee3de;
 }
 
-.chart-container-component {
+.donut-chart-container-component {
   display: flex;
   margin-block: 64px;
 }
 
-.chart-container-component .el-card__body {
+.donut-chart-container-component .el-card__body {
   display: flex;
   padding: 0;
 }
 
-.chart-container-component .text {
+.donut-chart-container-component .text {
   flex-grow: 1;
   margin-inline-end: 32px;
+  width: 124px;
 }
 
-.chart-container-component .chart-container {
+.donut-chart-container-component .chart-container {
   flex-grow: 11;
   height: 424px;
   padding: 32px;
   overflow: hidden;
+  width: calc(100% - 156px);
 }
 
-.chart-container-component .chart-container .legend {
+.donut-chart-container-component .chart-container .legend {
   display: flex;
   flex-direction: column;
   margin-inline-start: 32px;
   margin-block-start: 32px;
 }
 
-.chart-container-component .chart-container .legend .item {
+.donut-chart-container-component .chart-container .legend .item {
   align-items: center;
   display: flex;
   font-size: 1.333em;
@@ -115,7 +117,7 @@ onMounted(() => {
   margin-block-end: 16px;
 }
 
-.chart-container-component .chart-container .legend .legend-color {
+.donut-chart-container-component .chart-container .legend .legend-color {
   border-radius: 8px;
   display: inline-flex;
   margin-inline-end: 16px;
@@ -123,13 +125,13 @@ onMounted(() => {
   width: 36px;
 }
 
-.chart-container-component .title {
+.donut-chart-container-component .title {
   font-size: 1.833rem;
   font-variation-settings: 'wght' 500;
   margin: 0;
 }
 
-.chart-container-component .subtitle {
+.donut-chart-container-component .subtitle {
   color: var(--color-grey-6);
   font-size: 1.333rem;
   font-variation-settings: 'wght' 400;

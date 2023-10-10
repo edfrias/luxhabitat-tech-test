@@ -107,7 +107,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <section class="chart-container-component">
+  <section class="line-chart-container-component">
     <div class="text">
       <h2 class="title">Insights</h2>
       <p class="subtitle">Leads per day</p>
@@ -119,34 +119,36 @@ onMounted(() => {
 </template>
 
 <style>
-.chart-container-component {
+.line-chart-container-component {
   display: flex;
   margin-block: 64px;
 }
 
-.chart-container-component .text {
+.line-chart-container-component .text {
   flex-grow: 1;
   margin-inline-end: 32px;
+  width: 124px;
 }
 
-.chart-container-component .chart-container {
+.line-chart-container-component .chart-container {
   flex-grow: 11;
   height: 424px;
   padding: 32px;
   overflow: hidden;
+  width: calc(100% - 156px);
 }
 
 .el-card__body {
   padding: 0;
 }
 
-.chart-container-component .title {
+.line-chart-container-component .title {
   font-size: 1.833rem;
   font-variation-settings: 'wght' 500;
   margin: 0;
 }
 
-.chart-container-component .subtitle {
+.line-chart-container-component .subtitle {
   color: var(--color-grey-6);
   font-size: 1.333rem;
   font-variation-settings: 'wght' 400;

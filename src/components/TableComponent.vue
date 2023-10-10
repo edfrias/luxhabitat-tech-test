@@ -1,8 +1,11 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed, ref, watch } from 'vue';
 import { ElTable, ElTableColumn, ElButton } from 'element-plus';
 import { TableDataItem } from './Types/types';
+import { useModal } from '../stores/ModalStore';
 import AddLeadModalComponent from './AddLeadModalComponent.vue';
+
+const modalStore = useModal();
 
 type IsLoading = boolean;
 
@@ -16,14 +19,20 @@ const props = defineProps<{
 const isNewLeadModalVisible = ref<boolean>(false);
 
 const handleAddLead = (): void => {
-  isNewLeadModalVisible.value = true;
-};
-
-const handleCloseModal = (): void => {
-  isNewLeadModalVisible.value = false;
+  modalStore.setModalOpen(true);
+  isNewLeadModalVisible.value = modalStore.getModalOpen;
 };
 
 const isLoading = computed<IsLoading>(() => props.isLoading);
+
+watch(
+  () => modalStore.getModalOpen,
+  (newValue) => {
+    if (!newValue) {
+      isNewLeadModalVisible.value = newValue;
+    }
+  }
+);
 </script>
 
 <template>
@@ -35,7 +44,6 @@ const isLoading = computed<IsLoading>(() => props.isLoading);
     table-layout="fixed"
     v-loading="isLoading"
     :data="props.data"
-    :default-sort="{ prop: 'id', order: 'ascending' }"
   >
     <ElTableColumn class-name="id" prop="id" label="Id" width="60" sortable />
     <ElTableColumn
@@ -90,10 +98,7 @@ const isLoading = computed<IsLoading>(() => props.isLoading);
       </template>
     </ElTableColumn>
   </ElTable>
-  <AddLeadModalComponent
-    :visible="isNewLeadModalVisible"
-    @close="handleCloseModal"
-  />
+  <AddLeadModalComponent :visible="isNewLeadModalVisible" />
 </template>
 
 <style>

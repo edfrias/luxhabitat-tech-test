@@ -18,9 +18,9 @@ export interface TableDataItem {
   name: string;
   email: string;
   phone: string;
-  property_id: number;
+  property_id: number | undefined;
   property_location: string;
-  agent_id: number;
+  agent_id: number | undefined;
 }
 
 export enum HouseAvailability {

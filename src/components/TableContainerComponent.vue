@@ -1,19 +1,21 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, watch, onBeforeMount, onMounted } from 'vue';
 import { ElButton } from 'element-plus';
 import { TableDataItem } from './Types/types';
-import { Lead } from '../utils/types';
+import { useModal } from '../stores/ModalStore';
 import generateRandomLead from '../utils/generateRandomLead';
 import data from '../mocks/leads.json';
 import TableComponent from './TableComponent.vue';
 
 const TIMEOUT_DELAY = 1000;
 
-const leads = ref<Array<TableDataItem>>(data);
+const modalStore = useModal();
+
+const leads = ref<Array<TableDataItem>>([]);
 
 const loadingLeads = ref<boolean>(false);
 
-const generateRandomLeads = (): Lead[] => {
+const generateRandomLeads = (): Partial<TableDataItem>[] => {
   const fakeLeads = [];
   for (let i = 1; i < 12; i++) {
     fakeLeads.push(generateRandomLead());
@@ -22,17 +24,46 @@ const generateRandomLeads = (): Lead[] => {
   return fakeLeads;
 };
 
+// const handleLoadBookedLead = (leadData: Record<string, string | number>) => {
+//   loadingLeads.value = true;
+//   bookedLead.value = leadData;
+//   try {
+//     leads.value.unshift(bookedLead.value);
+//   } catch (error) {
+//     throw new Error('Something went wrong while trying to push new lead');
+//   } finally {
+//     loadingLeads.value = false;
+//   }
+// };
+
 const handleLoadLeads = (): void => {
   console.log('loading new random leads...');
   const newLeads = generateRandomLeads() as Array<TableDataItem>;
   loadingLeads.value = true;
 
-  leads.value = [...leads.value, ...newLeads];
+  modalStore.setLeadsData(newLeads);
 
   setTimeout(() => {
     loadingLeads.value = false;
   }, TIMEOUT_DELAY);
 };
+
+watch(
+  () => modalStore.getLeadsData,
+  (newValue) => {
+    if (newValue) {
+      leads.value = modalStore.getLeadsData;
+    }
+  }
+);
+
+onBeforeMount(() => {
+  modalStore.setLeadsData(data);
+});
+
+onMounted(() => {
+  leads.value = modalStore.getLeadsData;
+});
 </script>
 
 <template>
@@ -55,7 +86,7 @@ const handleLoadLeads = (): void => {
   margin-block: 64px;
 }
 
-.table-container-component .title {
+.table-container-component .text .title {
   font-size: 1.833rem;
   font-variation-settings: 'wght' 500;
   margin: 0;

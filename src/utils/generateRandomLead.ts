@@ -1,5 +1,6 @@
 import { faker } from '@faker-js/faker';
-import { Lead, Type, LeadSource } from './types';
+import { Type, LeadSource } from './types';
+import { TableDataItem } from '../components/Types/types';
 
 function generateRandomType() {
   const types = ['Buyer', 'Seller', 'Tenant'];
@@ -57,7 +58,7 @@ function generateRandomEmail() {
   return emails[Math.floor(Math.random() * emails.length)];
 }
 
-function generateRandomLead(): Lead {
+function generateRandomLead(): Partial<TableDataItem> {
   return {
     id: faker.number.int(),
     type: generateRandomType(),

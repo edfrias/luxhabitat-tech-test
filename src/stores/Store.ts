@@ -7,7 +7,7 @@ type State = {
   leads: Partial<TableDataItem>[];
 };
 
-export const useModal = defineStore('modal', {
+export const useStore = defineStore('modal', {
   state: (): State => ({
     modalOpen: false,
     lead: undefined,

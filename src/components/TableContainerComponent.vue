@@ -2,14 +2,14 @@
 import { ref, onBeforeMount } from 'vue';
 import { ElButton } from 'element-plus';
 import { TableDataItem } from './Types/types';
-import { useModal } from '../stores/ModalStore';
+import { useStore } from '../stores/Store';
 import { generateRandomLead } from '../utils/generateRandomLead';
 import data from '../mocks/leads.json';
 import TableComponent from './TableComponent.vue';
 
 const TIMEOUT_DELAY = 1000;
 
-const modalStore = useModal();
+const store = useStore();
 
 const loadingLeads = ref<boolean>(false);
 
@@ -27,7 +27,7 @@ const handleLoadLeads = (): void => {
   const newLeads = generateRandomLeads() as Array<TableDataItem>;
   loadingLeads.value = true;
 
-  modalStore.setLeadsData(newLeads);
+  store.setLeadsData(newLeads);
 
   setTimeout(() => {
     loadingLeads.value = false;
@@ -35,7 +35,7 @@ const handleLoadLeads = (): void => {
 };
 
 onBeforeMount(() => {
-  modalStore.setLeadsData(data);
+  store.setLeadsData(data);
 });
 </script>
 
@@ -45,10 +45,7 @@ onBeforeMount(() => {
       <h2 class="title">Lead activity</h2>
     </div>
     <div class="table-container">
-      <TableComponent
-        :data="modalStore.getLeadsData"
-        :is-loading="loadingLeads"
-      />
+      <TableComponent :data="store.getLeadsData" :is-loading="loadingLeads" />
       <ElButton class="load-leads" @click="handleLoadLeads" round>
         Load more
       </ElButton>

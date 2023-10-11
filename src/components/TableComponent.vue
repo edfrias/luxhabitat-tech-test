@@ -2,10 +2,10 @@
 import { computed } from 'vue';
 import { ElTable, ElTableColumn, ElButton } from 'element-plus';
 import { TableDataItem } from './Types/types';
-import { useModal } from '../stores/ModalStore';
+import { useStore } from '../stores/Store';
 import AddLeadModalComponent from './AddLeadModalComponent.vue';
 
-const modalStore = useModal();
+const store = useStore();
 
 type IsLoading = boolean;
 
@@ -17,7 +17,7 @@ const props = defineProps<{
 }>();
 
 const handleAddLead = (): void => {
-  modalStore.setModalOpen(true);
+  store.setModalOpen(true);
 };
 
 const isLoading = computed<IsLoading>(() => props.isLoading);

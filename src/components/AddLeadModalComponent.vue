@@ -11,13 +11,13 @@ import {
   ElCol,
 } from 'element-plus';
 import type { FormInstance } from 'element-plus';
-import { useModal } from '../stores/ModalStore';
+import { useStore } from '../stores/Store';
 import { TableDataItem } from './Types/types';
 import { formRules } from './validator/ValidatorRules';
 import { generateRandomDate } from '../utils/generateRandomLead';
 import agents from '../mocks/agents.json';
 
-const modalStore = useModal();
+const store = useStore();
 const leadsList = [{ type: 'Buyer' }, { type: 'Seller' }, { type: 'Tenant' }];
 
 const fakeDate = generateRandomDate();
@@ -35,12 +35,12 @@ const defaultLead: Partial<TableDataItem> = {
   property_id: undefined,
 };
 
-const isModalVisible = ref(modalStore.getModalOpen);
+const isModalVisible = ref(store.getModalOpen);
 const formRef = ref<FormInstance>();
 const leadForm = reactive<Partial<TableDataItem>>(defaultLead);
 
 const handleClose = (): void => {
-  modalStore.setModalOpen(false);
+  store.setModalOpen(false);
 };
 
 const resetFormFields = (formEl: FormInstance | undefined): void => {
@@ -54,7 +54,7 @@ const submitForm = (formEl: FormInstance | undefined) => {
 
   formEl.validate((valid) => {
     if (valid) {
-      modalStore.setLeadData({ ...formEl.$props.model });
+      store.setLeadData({ ...formEl.$props.model });
     } else {
       console.log('error while submit!');
       return false;
@@ -65,7 +65,7 @@ const submitForm = (formEl: FormInstance | undefined) => {
 };
 
 watch(
-  () => modalStore.getModalOpen,
+  () => store.getModalOpen,
   (newValue) => {
     isModalVisible.value = newValue;
   }

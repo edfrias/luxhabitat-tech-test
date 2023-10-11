@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, reactive, watch, toRaw } from 'vue';
+import { ref, reactive, watch } from 'vue';
 import {
   ElDialog,
   ElForm,
@@ -14,34 +14,28 @@ import type { FormInstance } from 'element-plus';
 import { useModal } from '../stores/ModalStore';
 import { TableDataItem } from './Types/types';
 import { formRules } from './validator/ValidatorRules';
+import { generateRandomDate } from '../utils/generateRandomLead';
 import agents from '../mocks/agents.json';
-
-type Props = {
-  visible: boolean;
-};
 
 const modalStore = useModal();
 const leadsList = [{ type: 'Buyer' }, { type: 'Seller' }, { type: 'Tenant' }];
-const defaultLead: Partial<TableDataItem> = {};
 
-// id: 0,
-// type: '22222',
-// lead_source: '22222',
-// name: '22222',
-// email: 'hola@example.com',
-// phone: '2222222222',
-// agent_id: 2222222222,
-// property_id: 2222222222,
+const fakeDate = generateRandomDate();
 
-const props = defineProps<Props>();
+const defaultLead: Partial<TableDataItem> = {
+  id: 0,
+  timestamp: fakeDate,
+  type: '',
+  lead_source: '',
+  name: '',
+  email: '',
+  phone: '',
+  property_location: 'no data',
+  agent_id: undefined,
+  property_id: undefined,
+};
 
-// TODO: emits still are trash
-const emit = defineEmits<{
-  send: [lead: Partial<TableDataItem>];
-}>();
-
-const showModal = ref<boolean>(false);
-
+const isModalVisible = ref(modalStore.getModalOpen);
 const formRef = ref<FormInstance>();
 const leadForm = reactive<Partial<TableDataItem>>(defaultLead);
 
@@ -60,24 +54,20 @@ const submitForm = (formEl: FormInstance | undefined) => {
 
   formEl.validate((valid) => {
     if (valid) {
-      const formInfo = toRaw(formEl.$props.model);
-      if (formInfo) {
-        console.log('submit!', formInfo);
-        // TODO: emits still are trash
-        emit('send', formInfo);
-        // modalStore.setLeadData(formInfo);
-      }
+      modalStore.setLeadData({ ...formEl.$props.model });
     } else {
       console.log('error while submit!');
       return false;
     }
   });
+
+  handleClose();
 };
 
 watch(
-  () => props.visible,
+  () => modalStore.getModalOpen,
   (newValue) => {
-    showModal.value = newValue;
+    isModalVisible.value = newValue;
   }
 );
 </script>
@@ -88,8 +78,7 @@ watch(
     @closed="resetFormFields(formRef)"
     modal-class="lead-modal"
     align-center
-    destroy-on-close
-    v-model="showModal"
+    v-model="isModalVisible"
     width="1162"
   >
     <p class="title">Lead details</p>

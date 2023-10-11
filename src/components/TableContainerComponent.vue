@@ -1,17 +1,15 @@
 <script setup lang="ts">
-import { ref, watch, onBeforeMount, onMounted } from 'vue';
+import { ref, onBeforeMount } from 'vue';
 import { ElButton } from 'element-plus';
 import { TableDataItem } from './Types/types';
 import { useModal } from '../stores/ModalStore';
-import generateRandomLead from '../utils/generateRandomLead';
+import { generateRandomLead } from '../utils/generateRandomLead';
 import data from '../mocks/leads.json';
 import TableComponent from './TableComponent.vue';
 
 const TIMEOUT_DELAY = 1000;
 
 const modalStore = useModal();
-
-const leads = ref<Array<Partial<TableDataItem>>>([]);
 
 const loadingLeads = ref<boolean>(false);
 
@@ -22,19 +20,6 @@ const generateRandomLeads = (): Partial<TableDataItem>[] => {
   }
 
   return fakeLeads;
-};
-
-// TODO: emits still are trash
-const handleLoadBookedLead = (leadData: Partial<TableDataItem>) => {
-  console.log('lead in table contaienr', leadData);
-  loadingLeads.value = true;
-  try {
-    leads.value.unshift(leadData);
-  } catch (error) {
-    throw new Error('Something went wrong while trying to push new lead');
-  } finally {
-    loadingLeads.value = false;
-  }
 };
 
 const handleLoadLeads = (): void => {
@@ -49,21 +34,8 @@ const handleLoadLeads = (): void => {
   }, TIMEOUT_DELAY);
 };
 
-watch(
-  () => modalStore.getLeadsData,
-  (newValue) => {
-    if (newValue) {
-      leads.value = modalStore.getLeadsData;
-    }
-  }
-);
-
 onBeforeMount(() => {
   modalStore.setLeadsData(data);
-});
-
-onMounted(() => {
-  leads.value = modalStore.getLeadsData;
 });
 </script>
 
@@ -74,9 +46,8 @@ onMounted(() => {
     </div>
     <div class="table-container">
       <TableComponent
-        :data="leads"
+        :data="modalStore.getLeadsData"
         :is-loading="loadingLeads"
-        @send="handleLoadBookedLead"
       />
       <ElButton class="load-leads" @click="handleLoadLeads" round>
         Load more

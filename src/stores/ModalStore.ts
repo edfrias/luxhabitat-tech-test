@@ -18,10 +18,7 @@ export const useModal = defineStore('modal', {
       this.modalOpen = modalOpen;
     },
     setLeadData(lead: Partial<TableDataItem>): void {
-      if (lead) {
-        this.lead = lead;
-        this.leads.unshift(lead);
-      }
+      this.leads = [lead, ...this.leads];
     },
     setLeadsData(leads: TableDataItem[]): void {
       this.leads = [...this.leads, ...leads];
@@ -30,9 +27,6 @@ export const useModal = defineStore('modal', {
   getters: {
     getModalOpen(state): boolean {
       return state.modalOpen;
-    },
-    getLeadData(state): Partial<TableDataItem> | undefined {
-      return state.lead;
     },
     getLeadsData(state): Partial<TableDataItem>[] {
       return state.leads;

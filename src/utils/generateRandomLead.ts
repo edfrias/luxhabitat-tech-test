@@ -14,7 +14,7 @@ function generateRandomLeadSource() {
   ] as LeadSource;
 }
 
-function generateRandomDate() {
+export function generateRandomDate() {
   const date = faker.date.past();
 
   return `${date.getDate()}-${date.getMonth()}-${date.getFullYear()}`;
@@ -58,7 +58,7 @@ function generateRandomEmail() {
   return emails[Math.floor(Math.random() * emails.length)];
 }
 
-function generateRandomLead(): Partial<TableDataItem> {
+export function generateRandomLead(): Partial<TableDataItem> {
   return {
     id: faker.number.int(),
     type: generateRandomType(),
@@ -72,5 +72,3 @@ function generateRandomLead(): Partial<TableDataItem> {
     agent_id: faker.number.int(),
   };
 }
-
-export default generateRandomLead;

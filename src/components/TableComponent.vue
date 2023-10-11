@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue';
+import { computed } from 'vue';
 import { ElTable, ElTableColumn, ElButton } from 'element-plus';
 import { TableDataItem } from './Types/types';
 import { useModal } from '../stores/ModalStore';
@@ -16,33 +16,11 @@ const props = defineProps<{
   isLoading: IsLoading;
 }>();
 
-// TODO: emits still are trash
-const emit = defineEmits<{
-  send: [lead: Partial<TableDataItem>];
-}>();
-
-const isNewLeadModalVisible = ref<boolean>(false);
-
 const handleAddLead = (): void => {
   modalStore.setModalOpen(true);
-  isNewLeadModalVisible.value = modalStore.getModalOpen;
 };
 
 const isLoading = computed<IsLoading>(() => props.isLoading);
-
-// TODO: emits still are trash
-const handleSubmit = (lead: Partial<TableDataItem>): void => {
-  emit('send', lead);
-};
-
-watch(
-  () => modalStore.getModalOpen,
-  (newValue) => {
-    if (!newValue) {
-      isNewLeadModalVisible.value = newValue;
-    }
-  }
-);
 </script>
 
 <template>
@@ -108,10 +86,7 @@ watch(
       </template>
     </ElTableColumn>
   </ElTable>
-  <AddLeadModalComponent
-    :visible="isNewLeadModalVisible"
-    @send="handleSubmit"
-  />
+  <AddLeadModalComponent />
 </template>
 
 <style>
